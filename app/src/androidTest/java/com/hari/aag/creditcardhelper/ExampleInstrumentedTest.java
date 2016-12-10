@@ -1,4 +1,4 @@
-package com.hari.aag.creditcardapply;
+package com.hari.aag.creditcardhelper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

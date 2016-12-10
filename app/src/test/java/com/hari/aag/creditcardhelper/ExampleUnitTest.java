@@ -1,4 +1,4 @@
-package com.hari.aag.creditcardapply;
+package com.hari.aag.creditcardhelper;
 
 import org.junit.Test;
 
