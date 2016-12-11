@@ -70,25 +70,28 @@ public class CreditCardHelperActivity extends AppCompatActivity
                 String cardBalanceStr1 = cardBalanceET.getText() + "";
                 if (cardBalanceStr1.isEmpty()){
                     Toast.makeText(this, "Card Balance is Empty!", Toast.LENGTH_SHORT).show();
+                    Log.d(LOG_TAG, "Card Balance is Empty!");
                     break;
                 }
 
                 String cardYearlyInterestRateStr1 = cardYearlyInterestRateET.getText() + "";
                 if (cardYearlyInterestRateStr1.isEmpty()){
                     Toast.makeText(this, "Card Yearly Interest Rate is Empty!", Toast.LENGTH_SHORT).show();
+                    Log.d(LOG_TAG, "Card Yearly Interest Rate is Empty!");
                     break;
                 }
 
                 String cardMinimumPaymentStr1 = cardMinimumPaymentET.getText() + "";
                 if (cardMinimumPaymentStr1.isEmpty()){
                     Toast.makeText(this, "Card Minimum Payment is Empty!", Toast.LENGTH_SHORT).show();
+                    Log.d(LOG_TAG, "Card Minimum Payment is Empty!");
                     break;
                 }
 
                 if ((!cardBalanceStr.isEmpty() && cardBalanceStr.equals(cardBalanceStr1) ||
                         (!cardYearlyInterestRateStr.isEmpty() && cardYearlyInterestRateStr.equals(cardYearlyInterestRateStr1)) ||
                         (!cardMinimumPaymentStr.isEmpty() && cardMinimumPaymentStr.equals(cardMinimumPaymentStr1)))){
-                    Log.d("CreditCardHelperAct", "Calculation Skipped.\n");
+                    Log.d(LOG_TAG, "Calculation Skipped!");
                     break;
                 }
 
@@ -116,24 +119,12 @@ public class CreditCardHelperActivity extends AppCompatActivity
                     newPrinciple_P = availableBalance_AB;
                 } while (availableBalance_AB > 0);
 
-                /*
-                cardFinalBalanceStr = finalCardBalance_FCB + "";
-                cardInterestPaidStr = totalInterestPaid_TIP + "";
-                */
-
                 cardFinalBalanceStr = getFormattedDouble(finalCardBalance_FCB);
                 cardMonthsRemainingStr = noOfMonths_N + "";
                 cardInterestPaidStr = getFormattedDouble(totalInterestPaid_TIP);
 
                 updateValueToUI(false);
                 saveValuesToPrefs();
-                /*
-                saveValuesToPrefs( new String[] {
-                        cardBalanceStr, cardYearlyInterestRateStr, cardMinimumPaymentStr,
-                        cardFinalBalanceStr, cardMonthsRemainingStr, cardInterestPaidStr
-                });
-                */
-
                 break;
             case R.id.clear:
                 cardBalanceStr = "";
@@ -145,12 +136,6 @@ public class CreditCardHelperActivity extends AppCompatActivity
 
                 updateValueToUI(true);
                 saveValuesToPrefs();
-                /*
-                saveValuesToPrefs( new String[] {
-                        cardBalanceStr, cardYearlyInterestRateStr, cardMinimumPaymentStr,
-                        cardFinalBalanceStr, cardMonthsRemainingStr, cardInterestPaidStr
-                });
-                */
                 break;
         }
     }
@@ -180,7 +165,7 @@ public class CreditCardHelperActivity extends AppCompatActivity
         cardMonthsRemainingStr = mySharedPrefs.getString(MONTHS_REMAINING, defaultMonthsRemainingValue);
         cardInterestPaidStr = mySharedPrefs.getString(INTEREST_PAID, defaultInterestPaidValue);
 
-        Log.d(LOG_TAG, "Values Read from Prefs.\n");
+        Log.d(LOG_TAG, "Values Read from Prefs.");
         dumpPrefValues();
     }
 
@@ -195,7 +180,7 @@ public class CreditCardHelperActivity extends AppCompatActivity
         prefsEditor.putString(INTEREST_PAID, cardInterestPaidStr);
         prefsEditor.commit();
 
-        Log.d(LOG_TAG, "Values Saved to Prefs.\n");
+        Log.d(LOG_TAG, "Values Saved to Prefs.");
         dumpPrefValues();
     }
 
@@ -208,24 +193,4 @@ public class CreditCardHelperActivity extends AppCompatActivity
         Log.d(LOG_TAG, INTEREST_PAID +  " - " + cardInterestPaidStr);
     }
 
-    /*
-    private void saveValuesToPrefs(String values[]){
-        SharedPreferences.Editor editor = mySharedPrefs.edit();
-        editor.putString(CARD_BALANCE, values[0]);
-        editor.putString(YEARLY_INTEREST_RATE, values[1]);
-        editor.putString(MINIMUM_PAYMENT, values[2]);
-        editor.putString(FINAL_BALANCE, values[3]);
-        editor.putString(MONTHS_REMAINING, values[4]);
-        editor.putString(INTEREST_PAID, values[5]);
-        editor.commit();
-
-        Log.d("CreditCardHelperAct", CARD_BALANCE + values[0]);
-        Log.d("CreditCardHelperAct", YEARLY_INTEREST_RATE + values[1]);
-        Log.d("CreditCardHelperAct", MINIMUM_PAYMENT + values[2]);
-        Log.d("CreditCardHelperAct", FINAL_BALANCE + values[3]);
-        Log.d("CreditCardHelperAct", MONTHS_REMAINING + values[4]);
-        Log.d("CreditCardHelperAct", INTEREST_PAID + values[5]);
-        Log.d("CreditCardHelperAct", "Saved to Prefs.\n");
-    }
-    */
 }
