@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="weight_text_view">1</integer>
+    <integer name="weight_edit_text">1</integer>
+</resources>
